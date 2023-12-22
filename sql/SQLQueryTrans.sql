@@ -1,0 +1,35 @@
+CREATE DATABASE Trans;
+use Trans;
+CREATE TABLE CUSTOMERS (
+   ID INT NOT NULL,
+   NAME VARCHAR (20) NOT NULL,
+   AGE INT NOT NULL,
+   ADDRESS CHAR (25),
+   SALARY DECIMAL (18, 2),
+   PRIMARY KEY (ID)
+);
+SELECT name from sys.databases;
+SELECT name from sys.tables;
+INSERT INTO CUSTOMERS VALUES 
+(1, 'Ramesh', 32, 'Ahmedabad', 2000.00),
+(2, 'Khilan', 25, 'Delhi', 1500.00),
+(3, 'Kaushik', 23, 'Kota', 2000.00),
+(4, 'Chaitali', 25, 'Mumbai', 6500.00),
+(5, 'Hardik', 27, 'Bhopal', 8500.00),
+(6, 'Komal', 22, 'Hyderabad', 4500.00),
+(7, 'Muffy', 24, 'Indore', 10000.00);
+SELECT * FROM CUSTOMERS;
+
+BEGIN TRAN;
+DELETE FROM CUSTOMERS WHERE AGE = 25;
+COMMIT;
+
+BEGIN TRAN;
+DELETE FROM CUSTOMERS WHERE age = 22;
+SAVE TRAN S1;
+DELETE FROM CUSTOMERS WHERE age = 23;
+SAVE TRAN S2;
+ROLLBACK;
+ROLLBACK TRAN S1;
+
+
